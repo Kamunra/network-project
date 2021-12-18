@@ -9,11 +9,11 @@ def distance(lat1, long1, lat2, long2):
     
     # Radius of earth in kilometers
     r = 6371
-    
+    # Finding distance using formula
     return (r*acos(sin(lat1)*sin(lat2)+cos(lat1)*cos(lat2)*cos(long2-long1)))
 
 all_airports = pd.read_csv('airports.csv', index_col='Airport ID')
-all_routes = pd.read_csv('routes.csv')
+all_routes = pd.read_csv('routes_filter.csv')
 
 all_routes['Distance'] = [0 for i in range(len(all_routes.index))]
 all_routes['Source Region'] = ['' for i in range(len(all_routes.index))]
@@ -29,4 +29,4 @@ for x in all_routes.index:
     all_routes.loc[x,'Source Region'] = all_airports.loc[source_id, 'Region']
     all_routes.loc[x,'Destination Region'] = all_airports.loc[dest_id, 'Region']
 
-all_routes.to_csv('routes_mod.csv', index=False) # storing new and ready-to-use dataframe into a separate csv file
+all_routes.to_csv('routes.csv', index=False) # storing new and ready-to-use dataframe into a separate csv file

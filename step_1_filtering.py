@@ -30,7 +30,7 @@ all_airports = pd.read_csv('airports.csv', index_col='Airport ID') #using stored
 #             all_routes.drop(x, inplace = True)
 
 # all_routes.drop('Codeshare', axis = 'columns', inplace = True) # dropping the empty Codeshare column
-# all_routes.to_csv('routes.csv', index=False) # storing new and ready-to-use dataframe into a separate csv file
+# all_routes.to_csv('routes_filter.csv', index=False) # storing new and ready-to-use dataframe into a separate csv file
 
-all_routes = pd.read_csv('routes.csv') #using stored result avoiding long previous steps
+all_routes = pd.read_csv('routes_filter.csv') #using stored result avoiding long previous steps
 # print(all_routes.head(15))
