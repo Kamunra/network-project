@@ -23,6 +23,11 @@ all_airports = pd.read_csv('airports.csv', index_col='Airport ID') #using stored
 # for x in all_routes.index:
 #     if all_routes.loc[x,'Source airport ID'] == "\\N" or all_routes.loc[x,'Destination airport ID'] == "\\N":
 #         all_routes.drop(x, inplace = True) # filtering the dataframe from unfilled records
+#     else:
+#         if int(all_routes.loc[x,'Source airport ID']) not in all_airports.index:
+#             all_routes.drop(x, inplace = True)
+#         elif int(all_routes.loc[x,'Destination airport ID']) not in all_airports.index:
+#             all_routes.drop(x, inplace = True)
 
 # all_routes.drop('Codeshare', axis = 'columns', inplace = True) # dropping the empty Codeshare column
 # all_routes.to_csv('routes.csv', index=False) # storing new and ready-to-use dataframe into a separate csv file

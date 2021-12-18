@@ -20,12 +20,12 @@ all_routes['Source Region'] = ['' for i in range(len(all_routes.index))]
 all_routes['Destination Region'] = ['' for i in range(len(all_routes.index))]
 
 for x in all_routes.index:
-    source_id = all_routes.loc[x,'Source airport ID']
-    dest_id = all_routes.loc[x,'Destination airport ID']
-    all_routes.loc[x,'Distance'] = distance(all_airports.loc[source_id, 'Latitude'],
-                                            all_airports.loc[source_id, 'Longitude'],
-                                            all_airports.loc[dest_id, 'Latitude'],
-                                            all_airports.loc[dest_id, 'Longitude'])
+    source_id = int(all_routes.loc[x,'Source airport ID'])
+    dest_id = int(all_routes.loc[x,'Destination airport ID'])
+    all_routes.loc[x,'Distance'] = distance(float(all_airports.loc[source_id, 'Latitude']),
+                                            float(all_airports.loc[source_id, 'Longitude']),
+                                            float(all_airports.loc[dest_id, 'Latitude']),
+                                            float(all_airports.loc[dest_id, 'Longitude']))
     all_routes.loc[x,'Source Region'] = all_airports.loc[source_id, 'Region']
     all_routes.loc[x,'Destination Region'] = all_airports.loc[dest_id, 'Region']
 
