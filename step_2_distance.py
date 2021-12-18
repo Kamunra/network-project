@@ -11,4 +11,3 @@ def distance(lat1, long1, lat2, long2):
     r = 6371
     
     return (r*acos(sin(lat1)*sin(lat2)+cos(lat1)*cos(lat2)*cos(long2-long1)))
-
