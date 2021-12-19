@@ -1,8 +1,11 @@
+from typing import OrderedDict
 from networkx.algorithms.centrality import betweenness
+from networkx.algorithms.centrality.degree_alg import degree_centrality
+from networkx.algorithms.operators.unary import reverse
 import pandas as pd
 import networkx as nx
 import matplotlib.pyplot as plt
-
+import operator
     
 def bet_centrality(G):
     between=nx.betweenness_centrality(G)
@@ -17,14 +20,14 @@ def close_centrality(G):
     for key, value in close.items():
         close_values.append(value)
     return close_values
-def deg_connectivity(G):
-    conn=nx.degree_centrality(G)
-    conn_values=[]
-    for key, value in conn.items():
-        conn_values.append(value)
-    return conn_values
+def deg_centrality(G):
+    deg=nx.degree_centrality(G)
+    deg_values=[]
+    for key, value in deg.items():
+        deg_values.append(value)
+    return deg_values
     
-data = pd.read_csv('network-project/routes.csv')
+data = pd.read_csv('routes.csv')
 SelReg = 'Asia'
 regionData = data.loc[(data['Source Region'].str.startswith(SelReg)) & data['Destination Region'].str.startswith(SelReg)]
 G = nx.from_pandas_edgelist(regionData,source = 'Source airport', target = 'Destination airport',edge_attr = True,create_using=nx.DiGraph)
@@ -35,9 +38,13 @@ print('Average shortest path --> {}\n Plot density -->{}'.format(PlotAvPathL,Plo
 Nodes=[]
 between_values=bet_centrality(G)
 close_values=close_centrality(G)
-conn_values=deg_connectivity(G)
+deg_values=deg_centrality(G)
 
-with open("network-project/Node_characteristics.csv",'w') as f:
+with open("Node_characteristics.csv",'w') as f:
     f.write("Node\t closeness centrality\t degree centrality\t betweenness centrality\n")  
     for i in range(0, len(close_values)):
-        f.write("{0}\t{1}\t{2}\t{3}\n".format(Nodes[i],close_values[i],conn_values[i],between_values[i]))
+        f.write("{0}\t{1}\t{2}\t{3}\n".format(Nodes[i],close_values[i],deg_values[i],between_values[i]))
+
+deg_cen=nx.degree_centrality(G)
+top10_deg_con = dict(sorted(deg_cen.items(), key=operator.itemgetter(1),reverse=True)[:10])
+print(top10_deg_con)
