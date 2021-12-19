@@ -1,14 +1,11 @@
-from typing import OrderedDict
-from networkx.algorithms.centrality import betweenness, closeness
-from networkx.algorithms.centrality.degree_alg import degree_centrality
-from networkx.algorithms.operators.unary import reverse
+
 import pandas as pd
 import networkx as nx
 import matplotlib.pyplot as plt
 import operator
     
 def bet_centrality(G):
-    between=nx.betweenness_centrality(G)
+    between=nx.betweenness_centrality(G,weight='Distance')
     between_values=[]
     for key, value in between.items():
         Nodes.append(key)
@@ -75,7 +72,7 @@ min_close_cent=min(close_cent.items(), key=operator.itemgetter(1))
 # print(min_close_cent)
 
 # Finding and plotting the top 10 nodes by their betweenness centrality values
-between_cent=nx.betweenness_centrality(G)
+between_cent=nx.betweenness_centrality(G,weight='Distance')
 top10_bet_cent=dict(sorted(between_cent.items(), key=operator.itemgetter(1),reverse=True)[:10])
 keys_bet = top10_bet_cent.keys()
 values_bet = top10_bet_cent.values()
