@@ -47,4 +47,9 @@ with open("Node_characteristics.csv",'w') as f:
 
 deg_conn=dict(nx.degree(G))
 top10_deg_con = dict(sorted(deg_conn.items(), key=operator.itemgetter(1),reverse=True)[:10])
-print(top10_deg_con)
+
+keys = top10_deg_con.keys()
+values = top10_deg_con.values()
+
+plt.bar(keys, values)
+plt.show()
