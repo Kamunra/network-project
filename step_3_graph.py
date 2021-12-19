@@ -53,3 +53,8 @@ values = top10_deg_con.values()
 
 plt.bar(keys, values)
 plt.show()
+countOfDegTwo=0
+for key, value in deg_conn.items():
+    if value==2:
+        countOfDegTwo+=1
+print(countOfDegTwo)    
