@@ -48,10 +48,10 @@ with open("Node_characteristics.csv",'w') as f:
 deg_conn=dict(nx.degree(G))
 top10_deg_con = dict(sorted(deg_conn.items(), key=operator.itemgetter(1),reverse=True)[:10])
 
-keys = top10_deg_con.keys()
-values = top10_deg_con.values()
+keys_deg = top10_deg_con.keys()
+values_deg = top10_deg_con.values()
 
-plt.bar(keys, values)
+plt.bar(keys_deg, values_deg)
 plt.show()
 countOfDegTwo=0
 for key, value in deg_conn.items():
@@ -64,3 +64,10 @@ max_close_cent=max(close_cent.items(), key=operator.itemgetter(1))
 min_close_cent=min(close_cent.items(), key=operator.itemgetter(1))  
 print(max_close_cent)
 print(min_close_cent)
+
+between_cent=nx.betweenness_centrality(G)
+top10_bet_cent=dict(sorted(between_cent.items(), key=operator.itemgetter(1),reverse=True)[:10])
+keys_bet = top10_bet_cent.keys()
+values_bet = top10_bet_cent.values()
+plt.bar(keys_bet, values_bet)
+plt.show()
