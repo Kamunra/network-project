@@ -12,7 +12,7 @@ def bet_centrality(G):
         between_values.append(value)
     return between_values
 def close_centrality(G):
-    close=nx.closeness_centrality(G)
+    close=nx.closeness_centrality(G,distance='Distance')
     close_values=[]
     for key, value in close.items():
         close_values.append(value)
@@ -65,7 +65,7 @@ for key, value in deg_conn.items():
 # print(countOfDegTwo)
 
 # Finding the greatest and least values of closeness centrality among nodes
-close_cent=nx.closeness_centrality(G)
+close_cent=nx.closeness_centrality(G,distance='Distance')
 max_close_cent=max(close_cent.items(), key=operator.itemgetter(1)) 
 min_close_cent=min(close_cent.items(), key=operator.itemgetter(1))  
 # print(max_close_cent)
