@@ -33,7 +33,7 @@ regionData = data.loc[(data['Source Region'].str.startswith(SelReg)) & data['Des
 G = nx.from_pandas_edgelist(regionData,source = 'Source airport', target = 'Destination airport',edge_attr = True,create_using=nx.DiGraph)
 
 #Finding Network density average shortest path length
-PlotAvPathL = nx.average_shortest_path_length(G)
+PlotAvPathL = nx.average_shortest_path_length(G,weight = 'Distance')
 PlotDensity = nx.density(G)
 
 # print('Average shortest path --> {}\n Plot density -->{}'.format(PlotAvPathL,PlotDensity))
