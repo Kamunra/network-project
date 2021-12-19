@@ -1,5 +1,5 @@
 from typing import OrderedDict
-from networkx.algorithms.centrality import betweenness
+from networkx.algorithms.centrality import betweenness, closeness
 from networkx.algorithms.centrality.degree_alg import degree_centrality
 from networkx.algorithms.operators.unary import reverse
 import pandas as pd
@@ -57,4 +57,10 @@ countOfDegTwo=0
 for key, value in deg_conn.items():
     if value==2:
         countOfDegTwo+=1
-print(countOfDegTwo)    
+print(countOfDegTwo)
+
+close_cent=nx.closeness_centrality(G)
+max_close_cent=max(close_cent.items(), key=operator.itemgetter(1)) 
+min_close_cent=min(close_cent.items(), key=operator.itemgetter(1))  
+print(max_close_cent)
+print(min_close_cent)
